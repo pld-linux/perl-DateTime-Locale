@@ -3,8 +3,8 @@
 %bcond_without	tests	# do not perform "make test"
 #
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	DateTime
-%define	pnam	Locale
+%define		pdir	DateTime
+%define		pnam	Locale
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl):	DateTime::Locale - wsparcie miêdzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
