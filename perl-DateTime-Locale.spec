@@ -5,7 +5,8 @@
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	DateTime
 %define	pnam	Locale
-Summary:	DateTime::Locale - Localization support for DateTime
+Summary:	DateTime::Locale - localization support for DateTime
+Summary(pl):	DateTime::Locale - wsparcie miêdzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	0.09
 Release:	1
@@ -24,6 +25,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This package contains DateTime::Locale, an factory for the various
 locale subclasses.  It also provides some functions for getting
 information on available locales.
+
+%description -l pl
+Pakiet ten zawiera DateTime::Locale, ¼ród³o ró¿nych klas zwi±zanych z
+umiêdzynarodowieniem. Udostêpnia równie¿ pewne funkcje s³u¿±ce do
+pobierania informacji o dostêpnych locale.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
