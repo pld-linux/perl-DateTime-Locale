@@ -10,14 +10,17 @@ Summary(pl):	DateTime::Locale - wsparcie miêdzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	0.09
 Release:	1
-# as perl itself
+# same as perl
 License:	GPL or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	e382e2bd7731b9ba79e6248bcf826ec1
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+%if %{with tests}
 BuildRequires:	perl-Params-Validate
+BuildRequires:	perl-Test-Pod >= 0.95
+%endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
