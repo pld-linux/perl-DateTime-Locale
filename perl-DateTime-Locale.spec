@@ -30,8 +30,8 @@ information on available locales.
 
 %build
 %{__perl} Build.PL \
-        installdirs=vendor \
-        destdir=$RPM_BUILD_ROOT 
+	installdirs=vendor \
+	destdir=$RPM_BUILD_ROOT 
 ./Build
 
 %{?with_tests:./Build test}
