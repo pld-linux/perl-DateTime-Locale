@@ -6,7 +6,7 @@
 %define		pdir	DateTime
 %define		pnam	Locale
 Summary:	DateTime::Locale - localization support for DateTime
-Summary(pl):	DateTime::Locale - wsparcie miêdzynarodowe dla DateTime
+Summary(pl.UTF-8):   DateTime::Locale - wsparcie miÄ™dzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	0.22
 Release:	1
@@ -31,10 +31,10 @@ This package contains DateTime::Locale, an factory for the various
 locale subclasses.  It also provides some functions for getting
 information on available locales.
 
-%description -l pl
-Pakiet ten zawiera DateTime::Locale, ¼ród³o ró¿nych klas zwi±zanych z
-umiêdzynarodowieniem. Udostêpnia równie¿ pewne funkcje s³u¿±ce do
-pobierania informacji o dostêpnych locale.
+%description -l pl.UTF-8
+Pakiet ten zawiera DateTime::Locale, ÅºrÃ³dÅ‚o rÃ³Å¼nych klas zwiÄ…zanych z
+umiÄ™dzynarodowieniem. UdostÄ™pnia rÃ³wnieÅ¼ pewne funkcje sÅ‚uÅ¼Ä…ce do
+pobierania informacji o dostÄ™pnych locale.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
