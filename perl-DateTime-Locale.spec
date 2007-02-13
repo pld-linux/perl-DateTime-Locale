@@ -6,7 +6,7 @@
 %define		pdir	DateTime
 %define		pnam	Locale
 Summary:	DateTime::Locale - localization support for DateTime
-Summary(pl.UTF-8):   DateTime::Locale - wsparcie międzynarodowe dla DateTime
+Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	0.22
 Release:	1
