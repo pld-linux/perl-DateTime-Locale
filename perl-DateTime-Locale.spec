@@ -9,7 +9,7 @@ Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	0.22
-Release:	2
+Release:	3
 # same as perl (parts on ICU License)
 License:	GPL v1+ or Artistic (parts on ICU License)
 Group:		Development/Languages/Perl
@@ -24,6 +24,8 @@ BuildRequires:	perl-Test-Pod >= 0.95
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreq 'perl(DateTime::Locale.*)'
 
 %description
 This package contains DateTime::Locale, an factory for the various
