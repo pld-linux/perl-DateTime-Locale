@@ -8,12 +8,12 @@
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
-Version:	0.43
+Version:	0.44
 Release:	1
 License:	GPL v1+ or Artistic (parts on ICU License)
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	6481929d939cbb6a8ef656acd2a8a2d6
+# Source0-md5:	f2e4ba9f2de67d2296c92da2e7c8b27d
 URL:		http://search.cpan.org/dist/DateTime-Locale/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
