@@ -20,6 +20,7 @@ BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 #BuildRequires:	perl-DateTime	# circular dependency
+BuildRequires:	perl-List-MoreUtils
 BuildRequires:	perl-File-Find-Rule
 BuildRequires:	perl-Test-Pod >= 0.95
 %endif
