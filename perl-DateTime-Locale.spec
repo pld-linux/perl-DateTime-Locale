@@ -20,8 +20,9 @@ BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 #BuildRequires:	perl-DateTime	# circular dependency
-BuildRequires:	perl-List-MoreUtils
 BuildRequires:	perl-File-Find-Rule
+BuildRequires:	perl-List-MoreUtils
+BuildRequires:	perl-Params-Validate
 BuildRequires:	perl-Test-Pod >= 0.95
 %endif
 BuildArch:	noarch
@@ -31,7 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains DateTime::Locale, an factory for the various
-locale subclasses.  It also provides some functions for getting
+locale subclasses. It also provides some functions for getting
 information on available locales.
 
 %description -l pl.UTF-8
@@ -45,7 +46,7 @@ pobierania informacji o dostępnych locale.
 %build
 %{__perl} Build.PL \
 	installdirs=vendor \
-	destdir=$RPM_BUILD_ROOT 
+	destdir=$RPM_BUILD_ROOT
 ./Build
 
 %{?with_tests:./Build test}
