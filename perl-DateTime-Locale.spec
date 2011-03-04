@@ -8,12 +8,12 @@
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
-Version:	0.44
+Version:	0.45
 Release:	1
 License:	GPL v1+ or Artistic (parts on ICU License)
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	f2e4ba9f2de67d2296c92da2e7c8b27d
+Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	8ba6a4b70f8fa7d987529c2e2c708862
 URL:		http://search.cpan.org/dist/DateTime-Locale/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -46,14 +46,15 @@ pobierania informacji o dostępnych locale.
 %build
 %{__perl} Build.PL \
 	installdirs=vendor \
-	destdir=$RPM_BUILD_ROOT
 ./Build
 
 %{?with_tests:./Build test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-./Build install
+
+./Build install \
+	destdir=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -61,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_vendorlib}/DateTime/Locale*pm
-%dir %{perl_vendorlib}/DateTime/Locale
-%{perl_vendorlib}/DateTime/Locale/*.pm
-%{_mandir}/man3/*
+%{perl_vendorlib}/DateTime/Locale.pm
+%{perl_vendorlib}/DateTime/LocaleCatalog.pm
+%{perl_vendorlib}/DateTime/Locale
+%{_mandir}/man3/DateTime::Locale*.3pm*
