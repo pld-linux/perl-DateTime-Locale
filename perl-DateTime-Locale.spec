@@ -1,15 +1,15 @@
 #
 # Conditional build:
 %bcond_without	tests	# do not perform "make test"
-#
-%include	/usr/lib/rpm/macros.perl
+
 %define		pdir	DateTime
 %define		pnam	Locale
+%include	/usr/lib/rpm/macros.perl
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	0.45
-Release:	1
+Release:	2
 License:	GPL v1+ or Artistic (parts on ICU License)
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -22,13 +22,14 @@ BuildRequires:	rpm-perlprov >= 4.1-13
 #BuildRequires:	perl-DateTime	# circular dependency
 BuildRequires:	perl-File-Find-Rule
 BuildRequires:	perl-List-MoreUtils
-BuildRequires:	perl-Params-Validate
+BuildRequires:	perl-Params-Validate >= 0.91
 BuildRequires:	perl-Test-Pod >= 0.95
 %endif
+BuildConflicts:	perl-DateTime-Format-Strptime <= 1.1000
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautoreq 'perl(DateTime::Locale.*)'
+%define		_noautoreq perl(DateTime::Locale.*)
 
 %description
 This package contains DateTime::Locale, an factory for the various
