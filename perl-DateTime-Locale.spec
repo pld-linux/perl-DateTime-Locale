@@ -8,29 +8,36 @@
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
-Version:	1.10
+Version:	1.11
 Release:	1
 License:	GPL v1+ or Artistic (parts on ICU License)
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	e8203878991aa67bdef14de7e4823d03
+# Source0-md5:	e842b6c61739d603917cea330555eb31
 URL:		http://search.cpan.org/dist/DateTime-Locale/
-BuildRequires:	perl-Module-Build
-BuildRequires:	perl-devel >= 1:5.8.0
+BuildRequires:	perl-Dist-CheckConflicts >= 0.02
+BuildRequires:	perl-devel >= 1:5.8.4
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-#BuildRequires:	perl-DateTime	# circular dependency
+BuildRequires:	perl-CPAN-Meta-Check >= 0.011
+BuildRequires:	perl-CPAN-Meta-Requirements
 BuildRequires:	perl-File-Find-Rule
 BuildRequires:	perl-List-MoreUtils
-BuildRequires:	perl-Params-Validate >= 0.91
+BuildRequires:	perl-Params-ValidationCompiler >= 0.13
 BuildRequires:	perl-Scalar-List-Utils >= 1.45
-BuildRequires:	perl-Test-Pod >= 0.95
+BuildRequires:	perl-Specio
+BuildRequires:	perl-Test-Fatal
+BuildRequires:	perl-Test-Pod >= 1.41
+BuildRequires:	perl-Test-Simple >= 0.96
+BuildRequires:	perl-Test-Requires
+BuildRequires:	perl-Test-Warnings
+BuildRequires:	perl-namespace-autoclean >= 0.19
 %endif
 BuildConflicts:	perl-DateTime-Format-Strptime <= 1.1000
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautoreq perl(DateTime::Locale.*)
+%define		_noautoreq_perl	DateTime::Locale.*)
 
 %description
 This package contains DateTime::Locale, an factory for the various
