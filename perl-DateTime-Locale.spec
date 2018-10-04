@@ -8,25 +8,27 @@
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
-Version:	1.11
+Version:	1.22
 Release:	1
 License:	GPL v1+ or Artistic (parts on ICU License)
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	e842b6c61739d603917cea330555eb31
+# Source0-md5:	b629fcaec2b4c900034a74602783a7f5
 URL:		http://search.cpan.org/dist/DateTime-Locale/
 BuildRequires:	perl-Dist-CheckConflicts >= 0.02
+BuildRequires:	perl-File-ShareDir-Install >= 0.03
 BuildRequires:	perl-devel >= 1:5.8.4
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 BuildRequires:	perl-CPAN-Meta-Check >= 0.011
 BuildRequires:	perl-CPAN-Meta-Requirements
-BuildRequires:	perl-File-Find-Rule
-BuildRequires:	perl-List-MoreUtils
+BuildRequires:	perl-IPC-System-Simple
 BuildRequires:	perl-Params-ValidationCompiler >= 0.13
 BuildRequires:	perl-Scalar-List-Utils >= 1.45
 BuildRequires:	perl-Specio
+BuildRequires:	perl-Storable
 BuildRequires:	perl-Test-Fatal
+BuildRequires:	perl-Test-File-ShareDir
 BuildRequires:	perl-Test-Pod >= 1.41
 BuildRequires:	perl-Test-Simple >= 0.96
 BuildRequires:	perl-Test-Requires
@@ -65,12 +67,19 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+for f in $RPM_BUILD_ROOT%{perl_vendorlib}/auto/share/dist/DateTime-Locale/*.pl ; do
+	basename=$(basename $f .pl)
+	lang=$(echo $basename | sed -e 's/-POSIX//; s/-VALENCIA//; s/-[0-9][0-9][0-9]//; s/-[A-Z][a-z][a-z][a-z]//; s/^\([a-z][a-z][a-z]\?\)-\([A-Z][A-Z]\)$/\1_\2/')
+	echo "%lang($lang) %{perl_vendorlib}/auto/share/dist/DateTime-Locale/${basename}.pl"
+done > %{name}.lang
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc Changes README.md
+%doc Changes LICENSE.cldr README.md
 %{perl_vendorlib}/DateTime/Locale.pm
 %{perl_vendorlib}/DateTime/Locale
+%dir %{perl_vendorlib}/auto/share/dist/DateTime-Locale
 %{_mandir}/man3/DateTime::Locale*.3pm*
