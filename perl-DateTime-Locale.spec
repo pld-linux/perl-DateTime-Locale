@@ -9,7 +9,7 @@ Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	1.22
-Release:	1
+Release:	2
 License:	GPL v1+ or Artistic (parts on ICU License)
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -39,7 +39,7 @@ BuildConflicts:	perl-DateTime-Format-Strptime <= 1.1000
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautoreq_perl	DateTime::Locale.*)
+%define		_noautoreq_perl	DateTime::Locale.*
 
 %description
 This package contains DateTime::Locale, an factory for the various
@@ -67,10 +67,17 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorlib}/DateTime/Locale/*.pod
+
 for f in $RPM_BUILD_ROOT%{perl_vendorlib}/auto/share/dist/DateTime-Locale/*.pl ; do
 	basename=$(basename $f .pl)
-	lang=$(echo $basename | sed -e 's/-POSIX//; s/-VALENCIA//; s/-[0-9][0-9][0-9]//; s/-[A-Z][a-z][a-z][a-z]//; s/^\([a-z][a-z][a-z]\?\)-\([A-Z][A-Z]\)$/\1_\2/')
-	echo "%lang($lang) %{perl_vendorlib}/auto/share/dist/DateTime-Locale/${basename}.pl"
+	lang=$(echo $basename | sed -e 's/^en-\(US-POSIX\|[0-9]\+\).*//; s/-VALENCIA//; s/-[0-9][0-9][0-9]//; s/-[A-Z][a-z][a-z][a-z]//; s/^\([a-z][a-z][a-z]\?\)-\([A-Z][A-Z]\)$/\1_\2/')
+	if [ -n "$lang" ]; then
+		langtag="%lang($lang) "
+	else
+		langtag=
+	fi
+	echo "${langtag}%{perl_vendorlib}/auto/share/dist/DateTime-Locale/${basename}.pl"
 done > %{name}.lang
 
 %clean
