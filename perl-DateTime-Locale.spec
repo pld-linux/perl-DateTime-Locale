@@ -4,7 +4,6 @@
 
 %define		pdir	DateTime
 %define		pnam	Locale
-%include	/usr/lib/rpm/macros.perl
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
