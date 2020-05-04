@@ -9,11 +9,12 @@ Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
 Version:	1.25
 Release:	1
-License:	GPL v1+ or Artistic (parts on ICU License)
+# same as perl 5 + Unicode for CLDR data
+License:	GPL v1+ or Artistic with Unicode parts
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/DateTime/DROLSKY/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	http://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	5a733800022bf1fc42d5ea6561846f47
-URL:		http://search.cpan.org/dist/DateTime-Locale/
+URL:		https://metacpan.org/release/DateTime-Locale
 BuildRequires:	perl-Dist-CheckConflicts >= 0.02
 BuildRequires:	perl-File-ShareDir-Install >= 0.03
 BuildRequires:	perl-devel >= 1:5.8.4
@@ -84,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc Changes LICENSE.cldr README.md
+%doc Changes LICENSE.cldr
 %{perl_vendorlib}/DateTime/Locale.pm
 %{perl_vendorlib}/DateTime/Locale
 %dir %{perl_vendorlib}/auto/share/dist/DateTime-Locale
