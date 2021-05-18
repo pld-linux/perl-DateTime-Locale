@@ -23,6 +23,7 @@ BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	perl-CPAN-Meta-Check >= 0.011
 BuildRequires:	perl-CPAN-Meta-Requirements
+BuildRequires:	perl-File-Copy-Recursive
 BuildRequires:	perl-IPC-System-Simple
 BuildRequires:	perl-Params-ValidationCompiler >= 0.13
 BuildRequires:	perl-Path-Tiny
