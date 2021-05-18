@@ -19,6 +19,7 @@ BuildRequires:	perl-Dist-CheckConflicts >= 0.02
 BuildRequires:	perl-File-ShareDir-Install >= 0.06
 BuildRequires:	perl-devel >= 1:5.8.4
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	perl-CPAN-Meta-Check >= 0.011
 BuildRequires:	perl-CPAN-Meta-Requirements
