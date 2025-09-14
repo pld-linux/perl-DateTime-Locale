@@ -1,21 +1,22 @@
 #
 # Conditional build:
-%bcond_without	tests	# do not perform "make test"
+%bcond_without	tests	# unit tests
 
 %define		pdir	DateTime
 %define		pnam	Locale
 Summary:	DateTime::Locale - localization support for DateTime
 Summary(pl.UTF-8):	DateTime::Locale - wsparcie międzynarodowe dla DateTime
 Name:		perl-DateTime-Locale
-Version:	1.32
+Version:	1.45
 Release:	1
 # same as perl 5 + Unicode for CLDR data
 License:	GPL v1+ or Artistic with Unicode parts
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	23ba33ef2d40f349f213ed00680f86aa
-URL:		https://metacpan.org/release/DateTime-Locale
+Source0:	https://www.cpan.org/modules/by-module/DateTime/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	0ba952412b4e013dd42894625ddb3c20
+URL:		https://metacpan.org/dist/DateTime-Locale
 BuildRequires:	perl-Dist-CheckConflicts >= 0.02
+BuildRequires:	perl-ExtUtils-MakeMaker
 BuildRequires:	perl-File-ShareDir-Install >= 0.06
 BuildRequires:	perl-devel >= 1:5.8.4
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -24,12 +25,14 @@ BuildRequires:	rpmbuild(macros) >= 1.745
 BuildRequires:	perl-CPAN-Meta-Check >= 0.011
 BuildRequires:	perl-CPAN-Meta-Requirements
 BuildRequires:	perl-File-Copy-Recursive
+BuildRequires:	perl-File-ShareDir
 BuildRequires:	perl-IPC-System-Simple
 BuildRequires:	perl-Params-ValidationCompiler >= 0.13
 BuildRequires:	perl-Path-Tiny
 BuildRequires:	perl-Scalar-List-Utils >= 1.45
 BuildRequires:	perl-Specio
 BuildRequires:	perl-Storable
+BuildRequires:	perl-Term-ANSIColor
 BuildRequires:	perl-Test-File-ShareDir
 BuildRequires:	perl-Test-Simple >= 1.302015
 BuildRequires:	perl-Test2-Suite
@@ -58,6 +61,7 @@ pobierania informacji o dostępnych locale.
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
+
 %{__make}
 
 %{?with_tests:%{__make} test}
@@ -80,7 +84,9 @@ for f in $RPM_BUILD_ROOT%{perl_vendorlib}/auto/share/dist/DateTime-Locale/*.pl ;
 	fi
 	echo "${langtag}%{perl_vendorlib}/auto/share/dist/DateTime-Locale/${basename}.pl"
 	manname="$(echo "$basename" | tr - _)"
-	echo "${langtag}%{_mandir}/man3/DateTime::Locale::${manname}.3pm*"
+	if [ -f "$RPM_BUILD_ROOT%{_mandir}/man3/DateTime::Locale::${manname}.3pm" ]; then
+		echo "${langtag}%{_mandir}/man3/DateTime::Locale::${manname}.3pm*"
+	fi
 done > %{name}.lang
 
 %clean
@@ -95,6 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/DateTime::Locale.3pm*
 %{_mandir}/man3/DateTime::Locale::Base.3pm*
 %{_mandir}/man3/DateTime::Locale::Catalog.3pm*
+%{_mandir}/man3/DateTime::Locale::Conflicts.3pm*
 %{_mandir}/man3/DateTime::Locale::Data.3pm*
 %{_mandir}/man3/DateTime::Locale::FromData.3pm*
 %{_mandir}/man3/DateTime::Locale::Util.3pm*
